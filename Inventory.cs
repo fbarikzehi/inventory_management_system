@@ -43,7 +43,7 @@ namespace inventory_management_system
 
             if (product is null)
             {
-                Console.WriteLine("Product not found");
+                Console.WriteLine($"Error: Product not found with ID ${id}");
             }
 
             return product;

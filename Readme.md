@@ -1,45 +1,69 @@
 # Inventory Management System
 
 ## Project Overview
-Develop a C# console application to inventory management system implemented in C# that provides essential functionality for tracking and managing product stock.
+This is a simple C# console application implemented for managing product inventory. The system allows users to:
+- Track products with their names, prices, and quantities
+- Perform basic inventory operations (add, remove, update, view)
+- Maintain accurate stock levels with validation
+- Handle product data through a simple command-line interface
+
+The application is built with a focus on reliability and ease of use.
 
 ## Requirements
 
-#### 1. Product Management
-- **Adding Products**
-  - Validate product name is not empty
-  - Ensure price is a valid positive decimal
-  - Verify initial quantity is non-negative
-  - Auto-generate unique product IDs
+### Functional Requirements
 
-- **Removing Products**
-  - Validate product exists before removal
-  - Check remaining stock before deletion
-  - Handle removal confirmation
+#### 1. Product Operations
+- **Product Creation**
+  - Add products with unique auto-incrementing ID
+  - Store product name, price, and quantity
+  - Initialize stock levels for new products
 
-#### 2. Inventory Operations
-- **Stock Updates**
-  - Support both stock increase and decrease
-  - Prevent negative stock levels
-  - Validate quantity changes
-  - Provide clear error messages for invalid operations
+- **Stock Management**
+  - Update product quantities (increase/decrease)
+  - Remove products from inventory
+  - Block removal of products with remaining stock
+  - Prevent negative stock quantities
 
-- **Inventory Display**
-  - Show all product details in formatted output
-  - Display prices in currency format
-  - Handle empty inventory scenarios
+- **Inventory Queries**
+  - List all products in inventory
+  - View individual product details
+  - Display empty inventory notifications
+  - Show prices in currency format ($XX.XX)
 
-#### 3. Input Validation
-- Numeric input validation for:
-  - Product ID
-  - Price
-  - Quantity
-- String validation for product names
-- Error handling with descriptive messages
- 
+#### 2. Data Validation
+- **Input Validation**
+  - Verify product ID exists
+  - Validate numeric inputs (price, quantity)
+  - Check for empty/null product names
+  - Validate stock adjustment amounts
+
+### Non-Functional Requirements
+
+#### 1. User Interface
+- Console-based menu system
+- Clear operation options (Add/Update/View/Remove)
+- Consistent user prompts
+- Clear error messaging
+- Operation confirmation messages
+
+#### 2. Data Management
+- In-memory product storage using List<Product>
+- Data consistency during operations
+
+#### 3. Error Handling
+- Descriptive error messages
+- Input validation feedback
+
+#### 4. Code Structure
+- Object-oriented design (Product, Inventory classes)
+- Clean method organization
+- Separation of concerns
+- Clear method responsibilities
+
 ## Objectives
 
-#### 1.Implemente inventory operations: add, update, view, and remove products.
-#### 2.Implemente stock tracking with input validation.
-#### 3.Implemente a simple, user-friendly console interface.
-#### 4.Write maintainable, well-structured C# code.
+- 1.Implemente inventory operations: add, update, view, and remove products.
+- 2.Implemente stock tracking with input validation.
+- 3.Implemente a simple, user-friendly console interface.
+- 4.Write maintainable, well-structured C# code.

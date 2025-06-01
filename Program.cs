@@ -46,6 +46,9 @@ class Program
     {
         try
         {
+            ShowMessage("\nAdding New Product");
+            ShowMessage("------------------");
+
             ShowMessage("Enter product name: ", false);
             string? inputName = ReadInput();
             if (string.IsNullOrWhiteSpace(inputName))
@@ -69,8 +72,20 @@ class Program
                 return;
             }
 
+            ShowMessage("\nConfirm adding product with following details:");
+            ShowMessage($"Name: {name}");
+            ShowMessage($"Price: ${price:F2}");
+            ShowMessage($"Initial Stock: {quantity}");
+            ShowMessage("Proceed? (y/n): ", false);
+
+            if (!ReadInput().Equals("y"))
+            {
+                ShowMessage("Operation cancelled.");
+                return;
+            }
+
             _inventory.AddProduct(name, price, quantity);
-            ShowMessage("Product added successfully!");
+            ShowMessage("✓ Product added successfully!");
         }
         catch (Exception ex)
         {
@@ -82,6 +97,9 @@ class Program
     {
         try
         {
+            ShowMessage("\nUpdating Stock");
+            ShowMessage("--------------");
+
             ShowMessage("Enter product ID: ", false);
             if (!int.TryParse(ReadInput(), out int id))
             {
@@ -96,6 +114,8 @@ class Program
                 return;
             }
 
+            ShowMessage($"\nCurrent stock for {product.Name}: {product.Quantity}");
+
             ShowMessage("Enter quantity change (+/-): ", false);
             if (!int.TryParse(ReadInput(), out int quantity))
             {
@@ -103,8 +123,15 @@ class Program
                 return;
             }
 
+            ShowMessage($"\nConfirm {(quantity >= 0 ? "adding" : "removing")} {Math.Abs(quantity)} units? (y/n): ", false);
+            if (!ReadInput().Equals("y"))
+            {
+                ShowMessage("Operation cancelled.");
+                return;
+            }
+
             _inventory.UpdateStock(id, quantity);
-            ShowMessage("Stock updated successfully!");
+            ShowMessage($"✓ Stock updated successfully! New quantity: {product.Quantity + quantity}");
         }
         catch (Exception ex)
         {
@@ -132,6 +159,9 @@ class Program
     {
         try
         {
+            ShowMessage("\nRemoving Product");
+            ShowMessage("----------------");
+
             ShowMessage("Enter product ID to remove: ", false);
             if (!int.TryParse(ReadInput(), out int id))
             {
@@ -146,14 +176,24 @@ class Program
                 return;
             }
 
-            if (product.Quantity == 0)
+            ShowMessage($"\nConfirm removing product:");
+            ShowMessage(product.ToString());
+            ShowMessage("Are you sure? (y/n): ", false);
+
+            if (!ReadInput().Equals("y"))
             {
-                ShowMessage("Product quantity is: 0");
+                ShowMessage("Operation cancelled.");
+                return;
+            }
+
+            if (product.Quantity > 0)
+            {
+                ShowMessage($"Cannot remove product with remaining stock ({product.Quantity} units).");
                 return;
             }
 
             _inventory.RemoveProduct(id);
-            ShowMessage("Product removed successfully!");
+            ShowMessage("✓ Product removed successfully!");
         }
         catch (Exception ex)
         {
